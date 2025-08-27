@@ -19,7 +19,7 @@ LATERAL FLATTEN(input => outputs) f
 WHERE f.value:address is not null
 
 {% if is_incremental() %}
-WHERE BLOCK_TIMESTAMP >= (
+AND BLOCK_TIMESTAMP >= (
   SELECT max(BLOCK_TIMESTAMP)
   FROM {{ this }}
 )
